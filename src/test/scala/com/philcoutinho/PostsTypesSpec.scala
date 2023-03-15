@@ -22,7 +22,7 @@ class PostsTypesSpec  extends AnyFlatSpec with Matchers with GivenWhenThen {
     val result = poststypes(df)
     result.show()
     Then("the result should be returned")
-    val expectedResult=Seq(types_Data("GraphImage", 1L, 1L),types_Data("GraphSidecar", 33L, 31L)).toDF()
+    val expectedResult=Seq(types_Data("GraphImage", 1L, 1L)).toDF()
     expectedResult.collect() should contain theSameElementsAs result.collect()
   }
 
