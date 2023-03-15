@@ -5,10 +5,21 @@ import org.apache.spark.sql.functions._
 
 object Posts {
 
-  def posts(df : DataFrame): DataFrame={
-    val df_1=df.select(explode(col("GraphImages")).as("GraphImage"))
-    val df_2 = df_1.select(col("GraphImage.*")).drop("comments", "display_url","gating_info","location",
-      "media_preview", "thumbnail_resources", "thumbnail_src", "urls")
-    df_2
+  def posts(df: DataFrame): DataFrame = {
+    val explodedGraphImage = df.select(explode(col("GraphImages")).as("GraphImage"))
+    val postsData = explodedGraphImage.select(col("GraphImage.__typename").as("_typename"),
+      col("GraphImage.comments_disabled").as("comments_disabled"),
+      col("GraphImage.dimensions").as("dimensions"),
+      col("GraphImage.edge_media_preview_like").as("edge_media_preview_like"),
+      col("GraphImage.edge_media_to_caption").as("edge_media_to_caption"),
+      col("GraphImage.edge_media_to_comment").as("edge_media_to_comment"),
+      col("GraphImage.id").as("id"),
+      col("GraphImage.is_video").as("is_video"),
+      col("GraphImage.owner").as("owner"),
+      col("GraphImage.shortcode").as("shortcode"),
+      col("GraphImage.tags").as("tags"),
+      col("GraphImage.taken_at_timestamp").as("taken_at_timestamp"),
+      col("GraphImage.username").as("username"))
+    postsData
   }
 }
