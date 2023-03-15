@@ -6,7 +6,7 @@ import org.scalatest.GivenWhenThen
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
-case class Data(created_at: Long, comment_id: String, text: String, owner_id: String, comment_username: String, username: String)
+case class Data( __typename:String,created_at: Long, comment_id: String, text: String, owner_id: String, comment_username: String, username: String)
 
 class CommentsSpec extends AnyFlatSpec with Matchers with GivenWhenThen {
   implicit val spark = SparkSession
@@ -23,7 +23,7 @@ class CommentsSpec extends AnyFlatSpec with Matchers with GivenWhenThen {
     When("Comments is invoked")
     val result = comments(df)
     Then("the Flattened DataFrame should be returned")
-    val expectedResult = Seq(Data(1619023963L, "18209883163069294", "💪🏼💪🏼", "20740995", "sergiroberto", "phil.coutinho")).toDF()
+    val expectedResult = Seq(Data("GraphImage",1619023963L, "18209883163069294", "💪🏼💪🏼", "20740995", "sergiroberto", "phil.coutinho")).toDF()
     expectedResult.collect() should contain theSameElementsAs result.collect()
   }
 }
