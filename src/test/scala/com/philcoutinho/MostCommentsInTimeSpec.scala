@@ -22,7 +22,6 @@ class MostCommentsInTimeSpec extends AnyFlatSpec with Matchers with GivenWhenThe
     val df = spark.read.option("multiLine", true).json("C:\\Users\\user\\IdeaProjects\\PhilCoutinho_2\\target\\sample.json")
     When("commentsInTime is invoked")
     val result = commentsInTime(df)
-    result.show()
     Then("the result should be returned")
     val expectedResult = Seq(Time_data("GraphImage", 1619023963, "18209883163069294", "20740995", "sergiroberto","💪🏼💪🏼")).toDF()
     expectedResult.collect() should contain theSameElementsAs result.collect()
