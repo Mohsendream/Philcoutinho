@@ -7,7 +7,7 @@ object Posts {
 
   def posts(df: DataFrame): DataFrame = {
     val explodedGraphImage = df.select(explode(col("GraphImages")).as("GraphImage"))
-    val postsData = explodedGraphImage.select(col("GraphImage.__typename").as("_typename"),
+    val postsData = explodedGraphImage.select(col("GraphImage.__typename").as("__typename"),
       col("GraphImage.comments_disabled").as("comments_disabled"),
       col("GraphImage.dimensions").as("dimensions"),
       col("GraphImage.edge_media_preview_like").as("edge_media_preview_like"),
