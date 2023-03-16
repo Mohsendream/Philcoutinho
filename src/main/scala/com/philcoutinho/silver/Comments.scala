@@ -5,8 +5,8 @@ import org.apache.spark.sql.functions.{col, explode}
 
 object Comments {
 
-  def comments(df: DataFrame): DataFrame = {
-    val explodedGraphImage = df.select(explode(col("GraphImages")).as("GraphImage"))
+  def comments(InputData: DataFrame): DataFrame = {
+    val explodedGraphImage = InputData.select(explode(col("GraphImages")).as("GraphImage"))
     val explodedDataArray = explodedGraphImage.select(explode(col("GraphImage.comments.data")).as("Data"),
       col("GraphImage.username").as("username"),
       col("GraphImage.__typename").as("__typename"))

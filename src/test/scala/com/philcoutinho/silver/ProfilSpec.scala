@@ -23,9 +23,9 @@ class ProfilSpec extends AnyFlatSpec with Matchers with GivenWhenThen {
 
   "Profil" should "Flatten the JSON Dataframe" in {
     Given("the JSON Dataframe")
-    val df = spark.read.option("multiLine", true).json("C:\\Users\\user\\IdeaProjects\\PhilCoutinho_2\\target\\sample.json")
+    val InputData = spark.read.option("multiLine", true).json("C:\\Users\\user\\IdeaProjects\\PhilCoutinho_2\\target\\sample.json")
     When("Profil is invoked")
-    val result = profil(df)
+    val result = profil(InputData)
     Then("the Flattened DataFrame should be returned")
     val expectedResult = Seq(profil_data(1286323200L, Info("", 23156762L, 1092L, "Philippe Coutinho", "1382894360", false, false, false, 618L), "phil.coutinho")).toDF()
     expectedResult.collect() should contain theSameElementsAs result.collect()

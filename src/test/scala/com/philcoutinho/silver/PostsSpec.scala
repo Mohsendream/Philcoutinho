@@ -37,9 +37,9 @@ class PostsSpec extends AnyFlatSpec with Matchers with GivenWhenThen {
 
   "Post" should "Flatten the JSON Dataframe" in {
     Given("the JSON Dataframe")
-    val df = spark.read.option("multiLine", true).json("C:\\Users\\user\\IdeaProjects\\PhilCoutinho_2\\target\\sample.json")
+    val InputData = spark.read.option("multiLine", true).json("C:\\Users\\user\\IdeaProjects\\PhilCoutinho_2\\target\\sample.json")
     When("posts is invoked")
-    val result = posts(df)
+    val result = posts(InputData)
     Then("the Flattened DataFrame should be returned")
     val expectedResult = Seq(posts_data("GraphImage", false, Dimensions(720L, 1080L), EdgeMediaPreviewLike(483475L), EdgeMediaToCaption(List(Edges(Node("Cada dia é uma nova batalha, que exige o meu máximo! \nA recuperação é lenta, requer paciência e dedicação. \nOs desafios sempre me motivaram. Estou trabalhando firme e estou convicto que voltarei melhor e mais forte a fazer o que mais amo.\nDEUS está comigo e tenho certeza que os que gostam de mim e do meu trabalho também! \nObrigado por toda positividade transmitida.💪🙏\n\n‘’Tudo tem o seu tempo determinado, e há tempo para todo o propósito debaixo do céu.”\n\nEclesiastes 3:1\n\n#borapracima #gratidaoaDEUS\n#embrevetamodevolta #féemDEUS #focadoemotivado")))),
       EdgeMediaToComment(80L), "2556864304565671217", false, Owner("1382894360"), "CN7zonEg1Ux", List("embrevetamodevolta", "gratidaoaDEUS", "focadoemotivado", "borapracima", "féemDEUS"), 1619021998L, "phil.coutinho")).toDF()
