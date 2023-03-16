@@ -1,7 +1,7 @@
-package com.philcoutinho
+package com.philcoutinho.silver
 
 import org.apache.spark.sql.DataFrame
-import org.apache.spark.sql.functions.{col, _}
+import org.apache.spark.sql.functions.{col, explode}
 
 object Comments {
 
@@ -19,4 +19,3 @@ object Comments {
     commentsData
   }
 }
-

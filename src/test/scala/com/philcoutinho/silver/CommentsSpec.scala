@@ -1,6 +1,6 @@
-package com.philcoutinho
+package com.philcoutinho.silver
 
-import com.philcoutinho.Comments.comments
+import com.philcoutinho.silver.Comments.comments
 import org.apache.spark.sql.SparkSession
 import org.scalatest.GivenWhenThen
 import org.scalatest.flatspec.AnyFlatSpec
