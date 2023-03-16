@@ -10,7 +10,7 @@ object Comments {
     val explodedDataArray = explodedGraphImage.select(explode(col("GraphImage.comments.data")).as("Data"),
       col("GraphImage.username").as("username"),
       col("GraphImage.__typename").as("__typename"))
-    val commentsData = explodedDataArray.select(col(".__typename").as("__typename"),
+    val commentsData = explodedDataArray.select(col("__typename").as("__typename"),
       col("Data.created_at").as("created_at"),
       col("Data.id").as("comment_id"),
       col("Data.text").as("text"),
