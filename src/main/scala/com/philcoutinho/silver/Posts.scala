@@ -2,6 +2,8 @@ package com.philcoutinho.silver
 
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.functions.{col, explode}
+import org.apache.spark.sql.functions.from_unixtime
+
 
 object Posts {
 
@@ -19,7 +21,7 @@ object Posts {
       col("GraphImage.owner").as("owner"),
       col("GraphImage.shortcode").as("shortcode"),
       col("GraphImage.tags").as("tags"),
-      col("GraphImage.taken_at_timestamp").as("taken_at_timestamp"),
+      from_unixtime(col("GraphImage.taken_at_timestamp"),"yyyy-MM-dd HH:mm:ss").as("taken_at_timestamp"),
       col("GraphImage.username").as("username"))
     postsData
   }
