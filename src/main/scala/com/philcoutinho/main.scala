@@ -26,7 +26,7 @@ object main {
     postsData.write.parquet( "PostsTable.parquet")
     val profilData = profil(inputData)
     profilData.write.parquet( "ProfilTable.parquet")
-    val timeCommentData = commentsInTime(commentsData, spark)
+    val timeCommentData = commentsInTime(commentsData, spark, "2020-01-01" , "2021-05-16")
     timeCommentData.write.parquet("TimeCommentTable.parquet")
     val mediaCommentCountData = mediaCommentCount(postsData, spark)
     mediaCommentCountData.write.parquet("MediaCommentCountTable.parquet")

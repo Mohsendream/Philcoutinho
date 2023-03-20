@@ -23,7 +23,7 @@ class CommentsInTimeSpec extends AnyFlatSpec with Matchers with GivenWhenThen {
     val inputData = spark.read.option("multiLine", true).json("C:\\Users\\user\\IdeaProjects\\PhilCoutinho_2\\target\\sample.json")
     val CommentData = comments(inputData)
     When("commentsInTime is invoked")
-    val result = commentsInTime(CommentData, spark)
+    val result = commentsInTime(CommentData, spark,"2020-01-01" ,"2021-05-16")
     Then("the result should be returned")
     val expectedResult = Seq(timeData("GraphImage", 1619023963, "18209883163069294", "20740995", "sergiroberto", "💪🏼💪🏼")).toDF()
     expectedResult.collect() should contain theSameElementsAs result.collect()
