@@ -1,13 +1,16 @@
-package com.philcoutinho
+package com.philcoutinho.silver
 
 import org.apache.spark.sql.DataFrame
-import org.apache.spark.sql.functions._
+import org.apache.spark.sql.functions.{col, explode}
+import org.apache.spark.sql.functions.from_unixtime
+
 
 object Posts {
 
-  def posts(df: DataFrame): DataFrame = {
-    val explodedGraphImage = df.select(explode(col("GraphImages")).as("GraphImage"))
-    val postsData = explodedGraphImage.select(col("GraphImage.__typename").as("_typename"),
+  def posts(InputData: DataFrame): DataFrame = {
+
+    val explodedGraphImage = InputData.select(explode(col("GraphImages")).as("GraphImage"))
+    val postsData = explodedGraphImage.select(col("GraphImage.__typename").as("typename"),
       col("GraphImage.comments_disabled").as("comments_disabled"),
       col("GraphImage.dimensions").as("dimensions"),
       col("GraphImage.edge_media_preview_like").as("edge_media_preview_like"),
@@ -18,7 +21,7 @@ object Posts {
       col("GraphImage.owner").as("owner"),
       col("GraphImage.shortcode").as("shortcode"),
       col("GraphImage.tags").as("tags"),
-      col("GraphImage.taken_at_timestamp").as("taken_at_timestamp"),
+      from_unixtime(col("GraphImage.taken_at_timestamp"),"yyyy-MM-dd HH:mm:ss").as("taken_at_timestamp"),
       col("GraphImage.username").as("username"))
     postsData
   }
